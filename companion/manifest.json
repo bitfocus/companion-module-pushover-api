@@ -1,5 +1,5 @@
 {
-	"id": "pushover",
+	"id": "pushover-api",
 	"name": "Pushover",
 	"shortname": "Pushover",
 	"description": "Send nofications with Pushover",
