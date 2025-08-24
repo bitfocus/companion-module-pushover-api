@@ -74,7 +74,7 @@ class Pushover extends InstanceBase {
 	async configUpdated(config) {
 		this.log('debug', 'configUpdated')
 		this.config = config
-		console.log(this.config)
+		// console.log(this.config)
 	}
 
 	async gotPost(msg, title = null, priority = 0, sound = 'pushover', url = null, url_title = null) {
