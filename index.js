@@ -19,15 +19,15 @@ class Pushover extends InstanceBase {
 				value: `This module will allow you to send push notifications to Apple or Android devices using the Pushover service. Before using this module you will need to:<br>
 				<ul><li>Create a new use account at https://pushover.net/signup</li><li>Create an application at https://pushover.net/apps/build</li><li>Copy your user/group key into this page</li><li>Copy your application API token/key into this page</li></ul>`,
 			},
-			{
-				type: 'textinput',
-				id: 'url',
-				label: 'Pushover API URL',
-				width: 12,
-				default: 'https://api.pushover.net/1/messages.json',
-				required: true,
-				tooltip: 'Should not need to be changed from the default',
-			},
+			// {
+			// 	type: 'textinput',
+			// 	id: 'url',
+			// 	label: 'Pushover API URL',
+			// 	width: 12,
+			// 	default: 'https://api.pushover.net/1/messages.json',
+			// 	required: true,
+			// 	tooltip: 'Should not need to be changed from the default',
+			// },
 			{
 				type: 'textinput',
 				id: 'user',
@@ -51,30 +51,16 @@ class Pushover extends InstanceBase {
 
 	async init(config) {
 		this.log('debug', 'Init Pushover')
+		this.postURL = 'https://api.pushover.net/1/messages.json'
 		this.config = config
-
-		// 		this.gotOptions = {
-		// 			prefixUrl: 'https://api.pushover.net/',
-		// 			responseType: 'json',
-		// 			throwHttpErrors: false,
-		// 			https: {
-		// 				rejectUnauthorized: false,
-		// 			},
-		// 			headers: {
-		// 				'Content-Type': 'application/x-www-form-urlencoded',
-		// 			},
-		// 		}
-		//
-		// 		console.log(this.gotOptions)
 
 		this.updateActions()
 		this.updateStatus(InstanceStatus.Ok, 'Running')
 	}
 
 	async configUpdated(config) {
-		this.log('debug', 'configUpdated')
 		this.config = config
-		// console.log(this.config)
+		this.log('debug', `configUpdated ${JSON.stringify(this.config)}`)
 	}
 
 	async gotPost(msg, title = null, priority = 0, sound = 'pushover', url = null, url_title = null) {
@@ -88,7 +74,7 @@ class Pushover extends InstanceBase {
 			return
 		}
 
-		this.log('info', `posting: ${msg}`)
+		this.log('info', `posting: ${msg} to ${this.postURL}`)
 		let postJson = {
 			responseType: 'json',
 			headers: {
@@ -105,11 +91,13 @@ class Pushover extends InstanceBase {
 				url_title: url_title,
 			},
 		}
-		// console.log(postJson)
+		console.log(postJson)
 		try {
-			var response = await got.post(this.config.url, postJson)
+			var response = await got.post(this.postURL, postJson)
+			// console.log(response)
 			this.processResult(response)
 		} catch (error) {
+			// console.log(error.response)
 			this.processResult(error.response)
 		}
 	}
