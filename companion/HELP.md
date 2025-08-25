@@ -7,5 +7,5 @@ The user/group key and application key provided by Pushover need to be entered i
 * Send simple notification
 * Send notification with more options
 
-### Version 1.0.2
+### Version 1.0.3
 This first release of the module.

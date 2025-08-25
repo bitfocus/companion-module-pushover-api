@@ -91,7 +91,7 @@ class Pushover extends InstanceBase {
 				url_title: url_title,
 			},
 		}
-		console.log(postJson)
+		// console.log(postJson)
 		try {
 			var response = await got.post(this.postURL, postJson)
 			// console.log(response)
