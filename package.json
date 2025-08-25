@@ -1,6 +1,6 @@
 {
 	"name": "pushover-api",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
@@ -12,11 +12,11 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@companion-module/base": "~1.12.1"
+		"@companion-module/base": "~1.12.1",
+		"got": "~13.0.0"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "~2.3.0",
-		"got": "~13.0.0",
 		"eslint": "^9.14.0"
 	},
 	"packageManager": "yarn@4.9.2"
